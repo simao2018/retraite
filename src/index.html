@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bienvenue sur cette plateforme</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="assets/semantic.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+
+</head>
+<body>
+   
+    <div class="ui fluid container" style="margin-top:10px; ">
+        <div class="ui primary menu">
+          <a class="active item">
+            Accueil
+          </a>
+          <a class="item">
+            CV
+          </a>
+          <a class="item">
+            Contact
+          </a>
+          <div class="right menu">
+            <div class="item">
+              <div class="ui icon input">
+                <input placeholder="Search..." type="text">
+                <i class="search link icon"></i>	
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      
+        <div class="ui container" style="margin-top: 30px;">
+              <div class="ui huge header">
+                Bienvenue sur TEST	
+              </div>
+              <div class="ui small header">
+                Selectionner un profil
+              </div>
+              
+            </div>
+      
+            <div class="ui container" style="margin-top: 30px;">
+                
+        <div class="ui link cards">
+          
+          <div class="card">
+            <div class="image">
+              <img src="assets/profileH.png" onclick="window.location='profile.html';">
+            </div>
+            <div class="content">
+              <div class="header" id="nomBd" ></div>
+              <div class="meta">
+                <a>Membre</a>
+              </div>
+              <div class="description" id="desBd">
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                Inscrit depuis 2016
+              </span>
+              <span>
+                <i class="user icon"></i>
+                <div id="recBd"></div>Recommandation
+              </span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="image">
+              <img src="assets/profileH.png" onclick="window.location='profile.html';">
+            </div>
+            <div class="content">
+              <div class="header" id="nomBd2" ></div>
+              <div class="meta">
+                <a>Membre</a>
+              </div>
+              <div class="description" id="desBd2">
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                Inscrit depuis 2016
+              </span>
+              <span>
+                <i class="user icon"></i>
+                <div id="recBd2"></div>Recommandation
+              </span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="image">
+              <img src="assets/profileH.png" onclick="window.location='profile.html';">
+            </div>
+            <div class="content">
+              <div class="header" id="nomBd3" ></div>
+              <div class="meta">
+                <a>Membre</a>
+              </div>
+              <div class="description" id="desBd3">
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                Inscrit depuis 2016
+              </span>
+              <span>
+                <i class="user icon"></i>
+                <div id="recBd3"></div>Recommandation
+              </span>
+            </div>
+          </div>
+        
+         
+      
+        </div>
+      
+        <div class="ui pagination menu" style="margin-top: 20px;">
+            <a class="active item">
+              1
+            </a>
+            <a class="item">
+              2
+            </a>
+            <div class="disabled item">
+              ...
+            </div>
+            <a class="item">
+              4
+            </a>
+            <a class="item">
+              5
+            </a>
+          </div>
+      
+      
+        </div>
+      
+        <div class="ui secondary vertical footer segment" style="margin-top: 20px;">
+          <div class="ui container">
+              Retraite test 2.0
+          </div>
+        </div>
+        
+      
+      </div>
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+   var config = {
+      apiKey: "AIzaSyAqSMUyNoUuQiNv_1nhYIBueqZG5AGNadI",
+      authDomain: "angular-8a659.firebaseapp.com",
+      databaseURL: "https://angular-8a659.firebaseio.com",
+      projectId: "angular-8a659",
+      storageBucket: "angular-8a659.appspot.com",
+      messagingSenderId: "1030751682991"
+    };
+    firebase.initializeApp(config);
+
+      var firestore = firebase.firestore();
+
+      const user = firestore.doc("angular/user");
+      const user2 = firestore.doc("sample/user");
+      const user3 = firestore.doc("test/user");
+ 
+        user.get().then(function(doc){
+            if(doc && doc.exists){
+              const myData = doc.data();
+              document.getElementById('nomBd').innerText =  myData.noms;
+              document.getElementById('desBd').innerText =  myData.description;
+              document.getElementById('recBd').innerText = myData.rec;
+
+            }
+        }).catch(function(error){
+            console.log("Erreur: ",error); 
+        });
+
+        user2.get().then(function(doc){
+            if(doc && doc.exists){
+              const myData = doc.data();
+              document.getElementById('nomBd2').innerText =  myData.noms;
+              document.getElementById('desBd2').innerText =  myData.description;
+              document.getElementById('recBd2').innerText = myData.rec;
+
+            }
+        }).catch(function(error){
+            console.log("Erreur: ",error); 
+        });
+
+        user3.get().then(function(doc){
+            if(doc && doc.exists){
+              const myData = doc.data();
+              document.getElementById('nomBd3').innerText =  myData.noms;
+              document.getElementById('desBd3').innerText =  myData.description;
+              document.getElementById('recBd3').innerText = myData.rec;
+
+            }
+        }).catch(function(error){
+            console.log("Erreur: ",error); 
+        });
+
+    
+      
+      
+      </script>
+      
+      
+    <app-root></app-root>      
+      
+      
+      <router-outlet></router-outlet>
+      
+  
+
+</body>
+</html>
